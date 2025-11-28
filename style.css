@@ -1,0 +1,116 @@
+/* Border box declaration 
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {
+  box-sizing: border-box;
+}
+/* inherit border-box on all elements in the universe and before and after
+ */
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: Arial, Geneva, sans-serif;
+
+	/* water background to cover entire page behind wrapper */
+	background-image: url("https://cdna.artstation.com/p/assets/images/images/030/953/926/large/lunar-0001.jpg?1602150313");
+	background-size: cover;
+	background-attachment:fixed;
+}
+
+.wrapper {
+    width: 97%;
+    max-width: 1200px;
+    margin: 0 auto;
+    float: none;
+    background-color: #fff;
+}
+
+div img {
+    width: 100%;
+    max-width: 225px; 
+}
+
+/* grid system -- mobile first! */
+/* flex contatiner */
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/*special row style for row 6 -- space evenly */
+.row-even { 
+	display: flex; 
+	justify-content: space-evenly; 
+	align-items: flex-start; 
+	gap: -30px;
+}
+
+/* attribute selector to give some margin between columns and apply styles to flex items */
+
+[class*="col-"] {
+    margin-left: 4%;
+    flex: 0 0 92%;
+}
+
+/* Add background colors to see how much space each column is taking */
+
+.col-1 {
+    background-color: #A3CDD9;
+}
+
+.col-2 {
+    background-color: #FFFCE6;
+}
+
+.col-3 {
+    background-color: #F2CC39;
+}
+
+.col-4 {
+    background-color: #C2B8AD;
+}
+
+.col-even {
+    background-color: #87c4c4;
+}
+
+/* Tablet Landscape Screen Sizes */
+@media only screen and (min-width: 480px)  {
+    
+  .col-1,
+  .col-2 {
+        flex: 0 0 44%;
+    }
+  .col-3,
+  .col-4 {
+        flex: 0 0 92%;
+    }   
+}
+/* Desktop screen Sizes */
+@media only screen and (min-width: 768px) {
+  
+  
+    .col-1 {
+        flex: 0 0 20%;
+    }
+  
+    .col-2 {
+        flex: 0 0 44%;
+    }
+
+    .col-3 {
+        flex: 0 0 68%;
+    }
+
+    .col-4 {
+        flex: 0 0 92%;
+    }
+
+    .col-even {
+        flex: 0 0 10%;
+    }
+}
