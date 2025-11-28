@@ -14,10 +14,10 @@ html {
 body {
     font-family: Arial, Geneva, sans-serif;
 
-	/* water background to cover entire page behind wrapper */
-	background-image: url("https://cdna.artstation.com/p/assets/images/images/030/953/926/large/lunar-0001.jpg?1602150313");
-	background-size: cover;
-	background-attachment:fixed;
+    /* water background to cover entire page behind wrapper */
+    background-image: url("https://cdna.artstation.com/p/assets/images/images/030/953/926/large/lunar-0001.jpg?1602150313");
+    background-size: cover;
+    background-attachment:fixed;
 }
 
 .wrapper {
@@ -28,89 +28,79 @@ body {
     background-color: #fff;
 }
 
-div img {
+article img {
     width: 100%;
-    max-width: 225px; 
+    height: auto;
 }
 
-/* grid system -- mobile first! */
-/* flex contatiner */
-
+/* Grid system */
 .row {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+
+    /* Mobile single column */
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin-bottom: 15px;
+
+    /*Pack items tightly in rows so that gaps are filled if necessary*/
+    grid-auto-flow: dense;
+
+    /* Sets a minimum height for all rows */
+    grid-auto-rows: minmax(200px, auto);
 }
 
-/*special row style for row 6 -- space evenly */
-.row-even { 
-	display: flex; 
-	justify-content: space-evenly; 
-	align-items: flex-start; 
-	gap: -30px;
+/* Special grid for row 6 */
+.row-even {
+    display: grid;
+
+    /*5 columns for row 6*/
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-/* attribute selector to give some margin between columns and apply styles to flex items */
-
-[class*="col-"] {
-    margin-left: 4%;
-    flex: 0 0 92%;
+.row-even article {
+    grid-column: span 1;
+    min-width: 0;
 }
 
-/* Add background colors to see how much space each column is taking */
+/*Colors and grid column spans for each article */
+/* Mobile first: all articles span full width */
+.col-1  { background-color: #A3CDD9; }
+.col-2  { background-color: #FFFCE6; }
+.col-3  { background-color: #F2CC39; }
+.col-4  { background-color: #C2B8AD; }
+.col-even { background-color: #87c4c4; }
 
-.col-1 {
-    background-color: #A3CDD9;
-}
+/* Grid adjustments for tablet */
+@media (min-width: 480px) {
 
-.col-2 {
-    background-color: #FFFCE6;
-}
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-.col-3 {
-    background-color: #F2CC39;
-}
+    /* Column spans on tablet */
 
-.col-4 {
-    background-color: #C2B8AD;
-}
-
-.col-even {
-    background-color: #87c4c4;
-}
-
-/* Tablet Landscape Screen Sizes */
-@media only screen and (min-width: 480px)  {
+    /* Makes col-1 span 1 column */
+    .col-1 { grid-column: span 1; }     
     
-  .col-1,
-  .col-2 {
-        flex: 0 0 44%;
-    }
-  .col-3,
-  .col-4 {
-        flex: 0 0 92%;
-    }   
+    /* Makes col-2, col-3, and col-4 span 2 columns */
+    .col-2 { grid-column: span 2; }        
+    .col-3 { grid-column: span 2; }        
+    .col-4 { grid-column: span 2; }        
 }
-/* Desktop screen Sizes */
-@media only screen and (min-width: 768px) {
-  
-  
-    .col-1 {
-        flex: 0 0 20%;
-    }
-  
-    .col-2 {
-        flex: 0 0 44%;
+
+/* Grid adjustments for desktop */
+@media (min-width: 768px) {
+
+    .row {
+        grid-template-columns: repeat(4, 1fr);
     }
 
-    .col-3 {
-        flex: 0 0 68%;
-    }
+    .col-1 { grid-column: span 1; }        
+    .col-2 { grid-column: span 2; }        
+    .col-3 { grid-column: span 3; } 
 
-    .col-4 {
-        flex: 0 0 92%;
-    }
-
-    .col-even {
-        flex: 0 0 10%;
-    }
+    /* Makes col-4 span all 4 columns */
+    .col-4 { grid-column: 1 / -1; }
 }
